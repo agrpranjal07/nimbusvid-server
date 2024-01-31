@@ -5,12 +5,19 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules ./src/index.js"
   },
+  
+  
   "author": "Pranjal Agrawal",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.0.3",
     "prettier": "^3.2.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "mongoose": "^8.1.1"
   }
 }
