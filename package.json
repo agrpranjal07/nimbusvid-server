@@ -7,8 +7,6 @@
   "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules ./src/index.js"
   },
-  
-  
   "author": "Pranjal Agrawal",
   "license": "ISC",
   "devDependencies": {
@@ -18,6 +16,7 @@
   "dependencies": {
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
-    "mongoose": "^8.1.1"
+    "mongoose": "^8.1.1",
+    
   }
 }
