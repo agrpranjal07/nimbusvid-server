@@ -9,10 +9,10 @@ const generateAccessTokenAndRefereshTokens = async(userId)=>{
         const user = await User.findById(userId);
         const accessToken= user.generateAccessToken();
         const refreshToken=user.generateRefreshToken();
-
+        
         user.refreshToken = refreshToken;
         await user.save({ validateBeforeSave: false})
-        
+        return {accessToken, refreshToken}
     } catch (error) {
         throw new ApiError(500,"Something went wrong while generating refresh and access token")
     }
@@ -32,7 +32,7 @@ const registerUser = asyncHandler( async(req,res)=>{
 
 
     const {fullName, email, username , password} = req.body; 
-    //  console.log("fullName:", fullName);
+     //console.log("fullName:", fullName);
 
     if (
         [fullName, email , username, password].some((field)=> field?.trim() === "")
@@ -46,7 +46,7 @@ const registerUser = asyncHandler( async(req,res)=>{
         // console.log(existedUser)
 
     if (existedUser) {
-        throw new ApiError(409,"User with email or password already existed")
+        throw new ApiError(409,"User with email or username already existed")
     }
 // console.log(req.files);
     const avatarLocalPath = req.files?.avatar[0]?.path;
@@ -54,13 +54,13 @@ const registerUser = asyncHandler( async(req,res)=>{
 
     let coverImageLocalPath;
     if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length  > 0){
-        req.files.coverImage[0].path;
+        coverImageLocalPath= req.files.coverImage[0].path;
     }
 
     if(!avatarLocalPath){
         throw new ApiError(400,'Avatar is required')
     }
-    
+    console.log(avatarLocalPath, coverImageLocalPath);
     const avatar = await uploadOnCloudinary(avatarLocalPath)
     const coverImage = await  uploadOnCloudinary(coverImageLocalPath)
 
@@ -91,16 +91,16 @@ const registerUser = asyncHandler( async(req,res)=>{
 
 } )
 
-const loginUser = asyncHandler(async (req,res)=>{
+const loginUser = asyncHandler( async(req,res)=>{
     //get username|| email && password  from the request body
     //check for username (if no) => ask to register
     // (if yes)check password in database (if no)  => wrong credentials
     //if yes => generate access and refresh token
     //send cookie
 
-    const {email, username, password} = req.body;
-
-    if (!username || !email) {
+    const { email, username , password} = req.body; 
+    console.log(req.body);
+    if (!(username || email)) {
         throw new ApiError(400,"username or email is required for login")
     }
 
@@ -118,7 +118,7 @@ const loginUser = asyncHandler(async (req,res)=>{
     throw new ApiError(401, "Incorrect Password")
     }
 
-    const {accessToken,refreshToken}=await generateAccessTokenAndRefereshTokens(user._id);
+    const {accessToken, refreshToken}=await generateAccessTokenAndRefereshTokens(user._id);
 
     const loggedInUser = await User.findById(user.id).select("-password -refreshToken")
 
