@@ -262,10 +262,10 @@ const updateUserAvatar = asyncHandler(async (req,res)=> {
         throw new ApiError(400,"Error while uploading avatar");
     }
 
-    const  user = await User.findById(req.user?._id).select(["-password"])
-    const oldAvatar =  user.avatar;
-    await User.findByIdAndUpdate(
-           user?._id,
+    const user1= await User.findById(req.user?._id).select(["-password"])
+    const oldAvatar =  user1.avatar;
+    const  user = await User.findByIdAndUpdate(
+           user1?._id,
             {
                 $set:{
                 "avatar": avatar.url
