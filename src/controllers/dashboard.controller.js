@@ -75,7 +75,8 @@ const getChannelStats = asyncHandler(async (req, res) => {
         ...videoStats[0],
         ...subscriptionStats[0]
     };
-    if(!combinedStats?.length){
+    //console.log(combinedStats)
+    if(!Object.keys(combinedStats)?.length){
         throw new ApiError(400,"Stats undefined")
     }
 
