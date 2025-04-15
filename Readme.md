@@ -1,4 +1,4 @@
-# Project Name: Videotube (Backend Project)
+# Project Name: nimbusvid-server (Backend Project)
 
 
 ## Project Summary:
@@ -19,13 +19,13 @@ I've dedicated over a month to develop and refine this project.
 You can view the design model for this project [here](https://app.eraser.io/workspace/IjuDeHAW1WwnKRJ6Oc0R?origin=share).
 
 ## Postman File:
-Included in this repository is a Postman collection file (`videotube.postman_collection.json`) for testing and interacting with the backend API.
+Included in this repository is a Postman collection file (`nimbusvid-server.postman_collection.json`) for testing and interacting with the backend API.
 
 ## PM2 Integration:
 The project includes PM2 for process management in production environments. PM2 is used to ensure reliable and efficient execution of the Node.js application.
 
 ## Installation:
-1. Clone the repository: `git clone https://github.com/agrpranjal07/Videotube_Backend-Project.git`
+1. Clone the repository: `git clone https://github.com/agrpranjal07/nimbusvid-server_Backend-Project.git`
 2. Install dependencies: `npm install`
 3. Start the server: `npm start`
 
@@ -84,7 +84,7 @@ While I've chosen not to deploy the project at this time, I may revisit this dec
 ## Feedback and Contact:
 I welcome any feedback or suggestions for improving this project. If you have questions, ideas, or just want to connect, feel free to reach out to me via email at [myselfpranjal2005@gmail.com](mailto:myselfpranjal2005@gmail.com) or through my [GitHub profile](https://github.com/agrpranjal07).
 
-Thank you for your interest in Videotube (Backend Project)!
+Thank you for your interest in nimbusvid-server (Backend Project)!
 
 
 ## License:
